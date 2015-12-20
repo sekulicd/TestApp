@@ -1,12 +1,13 @@
 package com.sekulicd.repo;
 
 import java.util.List;
+
 import com.couchbase.client.protocol.views.Query;
 import org.springframework.data.repository.CrudRepository;
-import com.sekulicd.domain.User;
+import com.sekulicd.domain.UserT;
 
-public interface UserRepository extends CrudRepository<User, String> {
+public interface UserTRepository extends CrudRepository<UserT, String> {
 
-	 List<User> all(Query query);
+	 List<UserT> all(Query query);
 
 }

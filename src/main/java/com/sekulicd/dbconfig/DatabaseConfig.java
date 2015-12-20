@@ -14,8 +14,8 @@ public class DatabaseConfig extends AbstractCouchbaseConfiguration {
 
     @Override
     protected List<String> bootstrapHosts() {
-    	return Arrays.asList("52.24.10.28");
-        //return Arrays.asList("127.0.0.1");
+    	//return Arrays.asList("52.24.10.28");
+        return Arrays.asList("127.0.0.1");
     }
 
     @Override
