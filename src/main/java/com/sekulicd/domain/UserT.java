@@ -1,12 +1,8 @@
 package com.sekulicd.domain;
 
-import java.util.Collection;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.couchbase.core.mapping.Document;
 import org.springframework.data.couchbase.core.mapping.Field;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @Document
 public class UserT{
@@ -32,7 +28,7 @@ public class UserT{
 	}
 
 	public String getUsername() {
-		return username;
+		return username;		
 	}
 
 	public void setUsername(String username) {

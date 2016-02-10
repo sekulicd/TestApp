@@ -1,13 +1,11 @@
 package com.sekulicd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,14 +21,14 @@ public class AuthenticationController {
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signUp(@RequestBody UserT userT) {
-		if(!userTExist(userT))
+		if(!userTServices.exist(userT.getUsername()))
 		{
-			userTServices.add(userT);
+			userTServices.save(userT);
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			TokenResponse tokenResponse = new TokenResponse(authentication.getDetails().toString());
 			return tokenResponse.getToken();
 		}
-		return "Account already exist";
+		return "Username already exist";
 	}
 	 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -40,13 +38,4 @@ public class AuthenticationController {
 		return tokenResponse.getToken();
 	}
 	
-	public boolean userTExist(UserT userT)
-	{
-		UserT user = userTServices.find(userT.getUsername());
-		if(user != null)
-		{
-			return true;
-		}
-		return false;
-	}
 }
